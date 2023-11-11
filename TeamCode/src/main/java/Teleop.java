@@ -3,6 +3,9 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.Range;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+
     @TeleOp(name = "tele")
     public class Teleop extends OpMode {
         protected DcMotor frontLeft;
@@ -10,8 +13,8 @@ import com.qualcomm.robotcore.util.Range;
         protected DcMotor frontRight;
         protected DcMotor backRight;
         protected DcMotor arm;
+        protected boolean isWorking;
         static final double tick_count = 400;
-
 
 
         @Override
@@ -32,6 +35,36 @@ import com.qualcomm.robotcore.util.Range;
             frontRight.setPower(0);
             backLeft.setPower(0);
             backRight.setPower(0);
+
+            isWorking = false;
+        }
+
+        public void encoderDrive_Start(double speed,
+                                       double arbitraryUnits) {
+
+            int armTarget;
+
+            // Determine new target position, and pass to motor controller
+            armTarget = arm.getCurrentPosition() + (int) (arbitraryUnits);
+            arm.setTargetPosition(armTarget);
+
+            // Turn On RUN_TO_POSITION
+            arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            // reset the timeout time and start motion.
+            arm.setPower(Math.abs(speed));
+        }
+
+        public boolean encoderDrive_IsDone() {
+            return !arm.isBusy();
+        }
+
+        public void encoderDrive_Complete() {
+            // Stop all motion;
+            arm.setPower(0);
+
+            // Turn off RUN_TO_POSITION
+            arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
 
         @Override
@@ -45,6 +78,19 @@ import com.qualcomm.robotcore.util.Range;
 //                arm.setPower(1);
 //                arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 //            }
+            if (gamepad1.a && !isWorking) {
+                encoderDrive_Start(0.25, 5);
+                isWorking = true;
+            }
+            if  (isWorking)
+            {
+                if (encoderDrive_IsDone())
+                {
+                    isWorking = false;
+                    encoderDrive_Complete();
+                }
+            }
+
             //arm goes up
             if (gamepad2.right_bumper){
                 arm.setPower(0.30);
