@@ -3,8 +3,8 @@
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-@com.qualcomm.robotcore.eventloop.opmode.Autonomous (name = "bluerightauton")
-public class bluerightauton extends LinearOpMode{
+@com.qualcomm.robotcore.eventloop.opmode.Autonomous (name = "blueleftauton")
+public class blueleftauton extends LinearOpMode{
     protected DcMotor frontLeft;
     protected DcMotor backLeft;
     protected DcMotor frontRight;
@@ -26,9 +26,8 @@ public class bluerightauton extends LinearOpMode{
         slideR(0.54, 1);
         sleep(250);
         forward(0.36,1);
-        left(0.4,1);
-        back(0.2,1);
-
+        left(0.45,1);
+        forward(0.27, 1);
 
     }
     public void forward(double speed, int time){

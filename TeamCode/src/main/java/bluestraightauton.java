@@ -3,8 +3,8 @@
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-@com.qualcomm.robotcore.eventloop.opmode.Autonomous (name = "bluerightauton")
-public class bluerightauton extends LinearOpMode{
+@com.qualcomm.robotcore.eventloop.opmode.Autonomous (name = "bluestraightauton")
+public class bluestraightauton extends LinearOpMode{
     protected DcMotor frontLeft;
     protected DcMotor backLeft;
     protected DcMotor frontRight;
@@ -23,13 +23,17 @@ public class bluerightauton extends LinearOpMode{
         arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         waitForStart();
-        slideR(0.54, 1);
-        sleep(250);
-        forward(0.36,1);
-        left(0.4,1);
-        back(0.2,1);
-
-
+        //forward(3);
+//        left(0.3, 3);
+//        sleep(1000);
+//        right(0.3, 3);x
+//        sleep(1000);
+//        forward(0.3, 3);
+//        sleep(1000);
+//        back(0.3, 3);
+//        sleep(1000);
+//        newT(3);
+        forward(0.43,1);
     }
     public void forward(double speed, int time){
         frontLeft.setPower(speed);
@@ -42,29 +46,7 @@ public class bluerightauton extends LinearOpMode{
         backLeft.setPower(0);
         backRight.setPower(0);
     }
-    public void slideL(double speed, int time){
-        frontLeft.setPower(-speed);
-        frontRight.setPower(speed);
-        backLeft.setPower(speed);
-        backRight.setPower(-speed);
-        sleep(time * 1000);
-        frontLeft.setPower(0);
-        frontRight.setPower(0);
-        backLeft.setPower(0);
-        backRight.setPower(0);
-    }
 
-    public void slideR(double speed, int time){
-        frontLeft.setPower(speed);
-        frontRight.setPower(-speed);
-        backLeft.setPower(-speed);
-        backRight.setPower(speed);
-        sleep(time * 1000);
-        frontLeft.setPower(0);
-        frontRight.setPower(0);
-        backLeft.setPower(0);
-        backRight.setPower(0);
-    }
     public void left(double speed, int time){
         frontLeft.setPower(0);
         frontRight.setPower(speed);
