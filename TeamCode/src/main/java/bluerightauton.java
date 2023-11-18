@@ -23,7 +23,7 @@ public class bluerightauton extends LinearOpMode{
         arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         waitForStart();
-        slideR(0.54, 1);
+        slideR(0.5, 1);
         sleep(250);
         forward(0.36,1);
         left(0.4,1);

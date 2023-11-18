@@ -25,9 +25,10 @@ public class blueboardrightauton extends LinearOpMode{
         waitForStart();
         slideL(0.55, 1);
         sleep(250);
-        forward(0.30,1);
+        forward(0.33,1);
         right(0.46,1);
-        forward(0.25,1);
+        forward(0.28,1);
+        back(0.17, 1);
 
     }
     public void forward(double speed, int time){

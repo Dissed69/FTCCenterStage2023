@@ -23,11 +23,12 @@ public class blueleftauton extends LinearOpMode{
         arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         waitForStart();
-        slideR(0.54, 1);
+        slideR(0.5, 1);
         sleep(250);
         forward(0.36,1);
-        left(0.45,1);
-        forward(0.27, 1);
+        left(0.46,1);
+        forward(0.33, 1);
+        back(0.13, 1);
 
     }
     public void forward(double speed, int time){

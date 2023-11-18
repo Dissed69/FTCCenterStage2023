@@ -23,11 +23,11 @@ public class blueboardleftauton extends LinearOpMode{
         arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         waitForStart();
-        slideL(0.55, 1);
+        slideL(0.58, 1);
         sleep(250);
         forward(0.30,1);
-        right(0.46,1);
-        back(0.2,1);
+        right(0.48,1);
+        back(0.23,1);
 
     }
     public void forward(double speed, int time){
